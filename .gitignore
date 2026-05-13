@@ -1,3 +1,11 @@
+# 1. Ignore everything
 *
+
+# 2. But do NOT ignore folders (this allows Git to look inside them)
+!*/
+
+# 3. Do NOT ignore files with a dot (your .cpp, .h, .py files)
 !*.*
+
+# 4. Specifically ensure .gitignore itself isn't ignored
 !.gitignore
