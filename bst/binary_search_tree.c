@@ -17,17 +17,52 @@ typedef struct Node {
 
 bool isEmpty() {}
 
-void insert() {}
+void insert(Node** rootptr, int val) {
+  bool inserted = false;
+  Node* current_node = *rootptr;
+  // create new node
+  Node* new_node = (Node*)malloc(sizeof(Node));
+  new_node->val = val;
+  new_node->left = NULL;
+  new_node->right = NULL;
+
+  while (!inserted) {
+    // right side
+    if (val > current_node->val && current_node->right == NULL) {
+      current_node->right = new_node;
+      inserted = true;
+      continue;
+    }
+    // left side
+    else if (val < current_node->val && current_node->left == NULL) {
+      current_node->left = new_node;
+      inserted = true;
+      continue;
+    }
+    current_node =
+        val > current_node->val ? current_node->right : current_node->left;
+  }
+}
 
 void delete() {}
 
-bool isExist() {}
+bool exists() {}
 
 void traversal() {}
 
 void delete() {}
 
+void cleanup() {}
+
 int main() {
-  printf("%s", "hello");
+  // initializing root pointer
+  int a[6] = {12, 4, 54, 22, 3, 1};
+  Node* root = (Node*)malloc(sizeof(Node));
+  root->val = 13;
+  root->right = NULL;
+  root->left = NULL;
+
+  insert(&root, 54);
+
   return 0;
 }
