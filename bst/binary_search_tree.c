@@ -48,7 +48,30 @@ void delete() {}
 
 bool exists() {}
 
-void traversal() {}
+/* implementing stack for In-order traversal priority -> left -> middle -> right
+do this for all sub-trees to print the data in sorted order.*/
+void traverse(Node* root) {
+  /* allocating extra size - this can be accurately done using the max height of
+   * the tree*/
+  Node* stack[100];
+  int top = -1;
+  Node* current = root;
+  while (1) {
+    // keep adding left till you encounter null
+    if (current->left == NULL) {
+      printf("%d", current->val);
+      top--;
+      // now you're at the middle
+      // print the middle -> change the current to right and go on
+      printf("%d", stack[top]->val);
+      if (stack[top]->right) current = stack[top]->right;
+    } else if (current->left != NULL) {
+      top++;
+      stack[top] = current->left;
+      current = current->left;
+    }
+  }
+}
 
 void delete() {}
 
@@ -56,7 +79,7 @@ void cleanup() {}
 
 int main() {
   // initializing root pointer
-  int a[6] = {12, 4, 54, 22, 3, 1};
+  int a[7] = {11, 4, 54, 22, 3, 1, 12};
   Node* root = (Node*)malloc(sizeof(Node));
   root->val = 13;
   root->right = NULL;
